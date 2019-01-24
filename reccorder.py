@@ -3,7 +3,6 @@ import wave
 import sys
 from threading import Thread
 
-
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
 samp_rate = 44100  # 44.1kHz sampling rate
@@ -26,10 +25,11 @@ class Reccorder(Thread):
         Thread.__init__(self)
 
     def run(self):
-        if state == "R":
-            frames = []
-            print("recording")
-            while state == "R":
+        while true:
+            if state == "R":
+                frames = []
+                print("recording")
+                while state == "R":
                     state = input("R reccord, S stop")
                     data = stream.read(chunk)
                     frames.append(data)
@@ -57,13 +57,13 @@ class Listener(Thread):
         Thread.__init__(self)
 
     def run(self):
-        state = input("R reccord, S stop")
+        while true:
+            state = input("R reccord, S stop")
         print(state)
 
 
 thread_Listen = Listener()
 thread_Reccorder = Reccorder()
-
 
 thread_Listen.start()
 thread_Reccorder.start()
