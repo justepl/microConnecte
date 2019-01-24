@@ -27,7 +27,8 @@ continuOrNot = multiprocessing.Queue()
 frames = []
 
 
-def reccord():
+def reccord(test):
+    print(test)
     # if streamBool:
 
     # while True:
@@ -53,7 +54,8 @@ def reccord():
         wavefile.close()
 
 
-def keyboardInput():
+def keyboardInput(test):
+    print(test)
     while True:
         something = True
     while (something):
@@ -71,8 +73,8 @@ def keyboardInput():
 
 
 if __name__ == "__main__":
-    processes = [multiprocessing.Process(target=reccord, args=()),
-                 multiprocessing.Process(target=keyboardInput, args=())]
+    processes = [multiprocessing.Process(target=reccord, args=("rec")),
+                 multiprocessing.Process(target=keyboardInput, args=("keyboard"))]
 
     for p in processes:
         p.start()
