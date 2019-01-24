@@ -25,30 +25,29 @@ class Reccorder(Thread):
         Thread.__init__(self)
 
     def run(self):
-        while True:
-            if state == "R":
-                frames = []
-                print("recording")
-                while state == "R":
-                    state = input("R reccord, S stop")
-                    data = stream.read(chunk)
-                    frames.append(data)
+        if state == "R":
+            frames = []
+            print("recording")
+            while state == "R":
+                state = input("R reccord, S stop")
+                data = stream.read(chunk)
+                frames.append(data)
 
-            if state == "S":
-                print("finished recording")
+        if state == "S":
+            print("finished recording")
 
-                # stop the stream, close it and destroy audio
-                stream.stop_stream()
-                stream.close()
-                audio.terminate()
+            # stop the stream, close it and destroy audio
+            stream.stop_stream()
+            stream.close()
+            audio.terminate()
 
-                # save the audio frames as .wav file
-                wavefile = wave.open(wav_output_filename, 'wb')
-                wavefile.setnchannels(chans)
-                wavefile.setsampwidth(audio.get_sample_size(form_1))
-                wavefile.setframerate(samp_rate)
-                wavefile.writeframes(b''.join(frames))
-                wavefile.close()
+            # save the audio frames as .wav file
+            wavefile = wave.open(wav_output_filename, 'wb')
+            wavefile.setnchannels(chans)
+            wavefile.setsampwidth(audio.get_sample_size(form_1))
+            wavefile.setframerate(samp_rate)
+            wavefile.writeframes(b''.join(frames))
+            wavefile.close()
 
 
 class Listener(Thread):
@@ -57,9 +56,8 @@ class Listener(Thread):
         Thread.__init__(self)
 
     def run(self):
-        while True:
-            state = input("R reccord, S stop")
-            print(state)
+        state = input("R reccord, S stop")
+        print(state)
 
 
 thread_Listen = Listener()
@@ -67,6 +65,3 @@ thread_Reccorder = Reccorder()
 
 thread_Listen.start()
 thread_Reccorder.start()
-
-thread_Listen.join()
-thread_Reccorder.join()
