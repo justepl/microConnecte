@@ -25,7 +25,7 @@ stream = audio.open(format=form_1, rate=samp_rate, channels=chans,
 continuOrNot = Queue()
 
 frames = []
-
+test = input("coucou")
 inputVar = "a"
 
 
