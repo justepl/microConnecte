@@ -56,7 +56,7 @@ def keyboardInput():
     inputVar = input("R for reccord S for Stop")
     continuOrNot.put(inputVar)
 
-if __name__=="__main__"
+if __name__=="__main__":
     processes = [multiprocessing.Process(target=keyboardInput),
              multiprocessing.Process(target=reccord)]
 
