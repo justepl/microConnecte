@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import threading
 import multiprocessing
+import sys
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
@@ -53,10 +54,18 @@ def reccord():
 
 def keyboardInput():
     # while True:
-    inputVar = input("R for reccord S for Stop") or "a"
+    something = True
+    while(something):
+        try:
+            inputVar = input("R for reccord S for Stop") or "a"
+            inputVar.rstrip()
+            continuOrNot.put(inputVar)
+        except EOFError:
+            something = False
+
+
     # except:
     #     inputVar = "a"
-    continuOrNot.put(inputVar)
 
 if __name__=="__main__":
     processes = [multiprocessing.Process(target=reccord),
