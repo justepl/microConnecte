@@ -70,7 +70,7 @@ class Reccorder():
             # try:
             print("try")
             print("R for reccord S for Stop \n")
-            inputVar = raw_input()
+            inputVar = input("?").strip()
             while inputVar != "R" or inputVar != "S":
                 inputVar = eval(input())
 
