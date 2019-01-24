@@ -70,7 +70,8 @@ class Reccorder():
             time.sleep(3)
             try:
                 print("try")
-                inputVar = input("R for reccord S for Stop \n")
+                print("R for reccord S for Stop \n")
+                inputVar = str(input())
                 # inputVar.rstrip()
 
                 continuOrNot.put(inputVar)
@@ -78,12 +79,7 @@ class Reccorder():
                 inputVar = "a"
             except EOFError:
                 print("catch")
-                inputVar = input("R for reccord S for Stop \n")
-                # inputVar.rstrip()
 
-                continuOrNot.put(inputVar)
-                print("queu : ", continuOrNot)
-                inputVar = "a"
 
                 something = True
 
