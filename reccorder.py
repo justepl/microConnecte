@@ -71,6 +71,9 @@ class Reccorder():
             print("try")
             print("R for reccord S for Stop \n")
             inputVar = eval(input())
+            while inputVar != "R" or inputVar != "S":
+                inputVar = eval(input())
+
             # inputVar.rstrip()
 
             continuOrNot.put(inputVar)
