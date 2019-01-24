@@ -73,11 +73,11 @@ def keyboardInput(test):
 
 
 if __name__ == "__main__":
-    processes = [multiprocessing.Process(target=reccord, args=("rec")),
-                 multiprocessing.Process(target=keyboardInput, args=("keyboard"))]
+    worker1 = multiprocessing.Process(target=reccord, args=("rec"))
+    worker2 = multiprocessing.Process(target=keyboardInput, args=("keyboard"))
 
-    for p in processes:
-        p.start()
+    worker1.start()
+    worker2.start()
 
     # if __name__ == '__main__':
 
