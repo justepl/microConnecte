@@ -71,8 +71,8 @@ def keyboardInput():
 
 
 if __name__ == "__main__":
-    processes = [multiprocessing.Process(target=reccord),
-                 multiprocessing.Process(target=keyboardInput)]
+    processes = [multiprocessing.Process(target=reccord, args=()),
+                 multiprocessing.Process(target=keyboardInput, args=())]
 
     for p in processes:
         p.start()
