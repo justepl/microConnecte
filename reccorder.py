@@ -20,7 +20,7 @@ while state == "R":
         print("recording")
         frames = []
 
-        while state == "S":
+        while state != "S":
             state = input("R reccord, S stop")
             data = stream.read(chunk)
             frames.append(data)
