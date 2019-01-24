@@ -11,29 +11,56 @@ wav_output_filename = 'test1.wav'  # output's file name
 
 audio = pyaudio.PyAudio()  # audio obj from PyAudio class
 
-# create pyaudio stream
 stream = audio.open(format=form_1, rate=samp_rate, channels=chans, input_device_index=dev_index, input=True,
                     frames_per_buffer=chunk)
+state = input("R reccord, S stop")
 
-print("recording")
-frames = []
+while state == "R":
+    if state == "R":
+        print("recording")
+        frames = []
 
-for ii in range(0,int((samp_rate/chunk)*record_secs)):
-    data = stream.read(chunk)
-    frames.append(data)
+        while state == "S":
+            data = stream.read(chunk)
+            frames.append(data)
+    if state == "S":
+        print("finished recording")
 
+        # stop the stream, close it and destroy audio
+        stream.stop_stream()
+        stream.close()
+        audio.terminate()
 
-print("finished recording")
+        # save the audio frames as .wav file
+        wavefile = wave.open(wav_output_filename, 'wb')
+        wavefile.setnchannels(chans)
+        wavefile.setsampwidth(audio.get_sample_size(form_1))
+        wavefile.setframerate(samp_rate)
+        wavefile.writeframes(b''.join(frames))
+        wavefile.close()
 
-# stop the stream, close it and destroy audio
-stream.stop_stream()
-stream.close()
-audio.terminate()
-
-# save the audio frames as .wav file
-wavefile = wave.open(wav_output_filename, 'wb')
-wavefile.setnchannels(chans)
-wavefile.setsampwidth(audio.get_sample_size(form_1))
-wavefile.setframerate(samp_rate)
-wavefile.writeframes(b''.join(frames))
-wavefile.close()
+#
+# # create pyaudio stream
+#
+# print("recording")
+# frames = []
+#
+# for ii in range(0,int((samp_rate/chunk)*record_secs)):
+#     data = stream.read(chunk)
+#     frames.append(data)
+#
+#
+# print("finished recording")
+#
+# # stop the stream, close it and destroy audio
+# stream.stop_stream()
+# stream.close()
+# audio.terminate()
+#
+# # save the audio frames as .wav file
+# wavefile = wave.open(wav_output_filename, 'wb')
+# wavefile.setnchannels(chans)
+# wavefile.setsampwidth(audio.get_sample_size(form_1))
+# wavefile.setframerate(samp_rate)
+# wavefile.writeframes(b''.join(frames))
+# wavefile.close()
