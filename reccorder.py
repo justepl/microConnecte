@@ -61,9 +61,9 @@ class Reccorder():
         while (something):
             time.sleep(3)
             try:
-                inputVar = input("R for reccord S for Stop")
-                inputVar.rstrip()
-
+                inputVar = input("R for reccord S for Stop \n")
+                # inputVar.rstrip()
+                
                 continuOrNot.put(inputVar)
                 print("queu : ",continuOrNot)
                 inputVar = "a"
