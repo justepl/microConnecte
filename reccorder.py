@@ -1,6 +1,6 @@
 import pyaudio
 import wave
-import thread
+import threading
 
 form_1 = pyaudio.paInt16 # 16-bit resolution
 chans = 1 # 1 channel
@@ -54,12 +54,5 @@ def keyboardInput():
         elif inputVar == "S":
             streamBool = False
 
-
-try:
-    thread.start_new_thread(reccord())
-    thread.start_new_thread(keyboardInput())
-except:
-    print("Error: unable to start thread")
-
-while 1:
-    pass
+threading.Thread(target=keyboardInput).start()
+threading.Thread(target=reccord).start()
