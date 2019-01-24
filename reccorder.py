@@ -47,12 +47,12 @@ def reccord():
         wavefile.close()
 
 def keyboardInput():
-    while True:
         inputVar = input("R for reccord")
         if inputVar == "R":
             streamBool = True
         elif inputVar == "S":
             streamBool = False
 
-threading.Thread(target=keyboardInput).start()
-threading.Thread(target=reccord).start()
+while True:
+    threading.Thread(target=keyboardInput).start()
+    threading.Thread(target=reccord).start()
