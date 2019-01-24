@@ -65,6 +65,7 @@ class Reccorder():
                 inputVar.rstrip()
 
                 continuOrNot.put(inputVar)
+                print("queu : ",continuOrNot)
                 inputVar = "a"
             except EOFError:
                 something = True
