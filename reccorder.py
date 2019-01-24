@@ -1,5 +1,8 @@
 import pyaudio
 import wave
+import sys
+from threading import Thread
+
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
@@ -13,56 +16,56 @@ audio = pyaudio.PyAudio()  # audio obj from PyAudio class
 
 stream = audio.open(format=form_1, rate=samp_rate, channels=chans, input_device_index=dev_index, input=True,
                     frames_per_buffer=chunk)
-state = input("R reccord, S stop")
 
-while state == "R":
-    if state == "R":
-        print("recording")
-        frames = []
+state = ""
 
-        while state != "S":
-            state = input("R reccord, S stop")
-            data = stream.read(chunk)
-            frames.append(data)
 
-    if state == "S":
-        print("finished recording")
+class Reccorder(Thread):
 
-        # stop the stream, close it and destroy audio
-        stream.stop_stream()
-        stream.close()
-        audio.terminate()
+    def __init__(self):
+        Thread.__init__(self)
 
-        # save the audio frames as .wav file
-        wavefile = wave.open(wav_output_filename, 'wb')
-        wavefile.setnchannels(chans)
-        wavefile.setsampwidth(audio.get_sample_size(form_1))
-        wavefile.setframerate(samp_rate)
-        wavefile.writeframes(b''.join(frames))
-        wavefile.close()
+    def reccord(self):
+        if state == "R":
+            frames = []
+            print("recording")
+            while state == "R":
+                    state = input("R reccord, S stop")
+                    data = stream.read(chunk)
+                    frames.append(data)
 
-#
-# # create pyaudio stream
-#
-# print("recording")
-# frames = []
-#
-# for ii in range(0,int((samp_rate/chunk)*record_secs)):
-#     data = stream.read(chunk)
-#     frames.append(data)
-#
-#
-# print("finished recording")
-#
-# # stop the stream, close it and destroy audio
-# stream.stop_stream()
-# stream.close()
-# audio.terminate()
-#
-# # save the audio frames as .wav file
-# wavefile = wave.open(wav_output_filename, 'wb')
-# wavefile.setnchannels(chans)
-# wavefile.setsampwidth(audio.get_sample_size(form_1))
-# wavefile.setframerate(samp_rate)
-# wavefile.writeframes(b''.join(frames))
-# wavefile.close()
+        if state == "S":
+            print("finished recording")
+
+            # stop the stream, close it and destroy audio
+            stream.stop_stream()
+            stream.close()
+            audio.terminate()
+
+            # save the audio frames as .wav file
+            wavefile = wave.open(wav_output_filename, 'wb')
+            wavefile.setnchannels(chans)
+            wavefile.setsampwidth(audio.get_sample_size(form_1))
+            wavefile.setframerate(samp_rate)
+            wavefile.writeframes(b''.join(frames))
+            wavefile.close()
+
+
+class Listener(Thread):
+
+    def __init__(self):
+        Thread.__init__(self)
+
+    def listen(self):
+        state = input("R reccord, S stop")
+
+
+thread_Listen = Listener()
+thread_Reccorder = Reccorder()
+
+
+thread_Listen.start()
+thread_Reccorder.start()
+
+thread_Listen.join()
+thread_Reccorder.join()
