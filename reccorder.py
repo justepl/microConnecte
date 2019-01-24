@@ -32,12 +32,12 @@ class Reccorder():
         # if streamBool:
 
         # while True:
-        if streamChar == "R":
+        # if streamChar == "R":
             # loop through stream and append audio chunks to frame array
-            data = stream.read(chunk)
-            frames.append(data)
+        data = stream.read(chunk)
+        frames.append(data)
 
-        elif streamChar == "S":
+        if streamChar == "S":
             print("finished recording")
 
             # stop the stream, close it, and terminate the pyaudio instantiation
