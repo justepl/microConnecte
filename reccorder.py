@@ -77,8 +77,7 @@ class Reccorder():
                 continuOrNot.put(inputVar)
                 print("queu : ", continuOrNot)
                 inputVar = "a"
-            except EOFError:
-                print("catch")
+
 
 
                 something = True
