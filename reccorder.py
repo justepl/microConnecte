@@ -30,14 +30,15 @@ frames = []
 class Reccorder():
     def reccord(self):
         # if streamBool:
-
+        print("func Reccord")
         # while True:
-        # if streamChar == "R":
+        if streamChar == "R":
             # loop through stream and append audio chunks to frame array
-        data = stream.read(chunk)
-        frames.append(data)
+            print("reccord")
+            data = stream.read(chunk)
+            frames.append(data)
 
-        if streamChar == "S":
+        elif streamChar == "S":
             print("finished recording")
 
             # stop the stream, close it, and terminate the pyaudio instantiation
@@ -57,7 +58,6 @@ class Reccorder():
         something = True
         while (something):
             time.sleep(1)
-            print("here")
             try:
                 inputVar = input("R for reccord S for Stop") or "a"
                 inputVar.rstrip()
