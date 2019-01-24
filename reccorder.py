@@ -64,21 +64,21 @@ class Reccorder():
         # inputVar = "a"
         print("inputVar :", inputVar)
         # while inputVar != "R" or inputVar != "S":
-            print("inputVar :", inputVar)
+        print("inputVar :", inputVar)
 
-            time.sleep(3)
-            # try:
-            print("try")
-            print("R for reccord S for Stop \n")
-            inputVar = str(input("? "))
-            # while inputVar != "R" or inputVar != "S":
-            #     inputVar = eval(input())
+        time.sleep(3)
+        # try:
+        print("try")
+        print("R for reccord S for Stop \n")
+        inputVar = str(input("? "))
+        # while inputVar != "R" or inputVar != "S":
+        #     inputVar = eval(input())
 
-            # inputVar.rstrip()
+        # inputVar.rstrip()
 
-            continuOrNot.put(inputVar)
-            print("queu : ", continuOrNot)
-            inputVar = "a"
+        continuOrNot.put(inputVar)
+        print("queu : ", continuOrNot)
+        inputVar = "a"
 
 
 # except:
