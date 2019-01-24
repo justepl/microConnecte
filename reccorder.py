@@ -53,7 +53,7 @@ def reccord():
 
 def keyboardInput():
     # while True:
-    inputVar = input(raw_input("R for reccord S for Stop") or "a")
+    inputVar = raw_input("R for reccord S for Stop") or "a"
     # except:
     #     inputVar = "a"
     continuOrNot.put(inputVar)
