@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
     worker1 = Process(target=reccorderInstance.reccord, args=())
     worker2 = Process(target=reccorderInstance.keyboardInput, args=())
-
+    i = 0
     while i <= 2:
         worker2.start()
         worker1.start()
