@@ -32,6 +32,7 @@ class Reccorder():
         # if streamBool:
         print("func Reccord")
         while True:
+            streamChar = continuOrNot.get()
             if streamChar == "R":
                 # loop through stream and append audio chunks to frame array
                 print("reccord")
