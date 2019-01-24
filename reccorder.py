@@ -1,6 +1,7 @@
 import pyaudio
 import wave
 import threading
+from multiprocessing import Process, Queue, TimeoutError
 
 form_1 = pyaudio.paInt16 # 16-bit resolution
 chans = 1 # 1 channel
@@ -21,38 +22,50 @@ stream = audio.open(format = form_1,rate = samp_rate,channels = chans,
                     frames_per_buffer=chunk)
 
 def reccord():
-    if streamBool:
+    # if streamBool:
         frames = []
 
-
-        # loop through stream and append audio chunks to frame array
-        for ii in range(0,int((samp_rate/chunk)*record_secs)):
+    while True:
+        if streamBool:
+            # loop through stream and append audio chunks to frame array
             data = stream.read(chunk)
             frames.append(data)
 
-    else:
-        print("finished recording")
+        else:
+            print("finished recording")
 
-        # stop the stream, close it, and terminate the pyaudio instantiation
-        stream.stop_stream()
-        stream.close()
-        audio.terminate()
+            # stop the stream, close it, and terminate the pyaudio instantiation
+            stream.stop_stream()
+            stream.close()
+            audio.terminate()
 
-        # save the audio frames as .wav file
-        wavefile = wave.open(wav_output_filename,'wb')
-        wavefile.setnchannels(chans)
-        wavefile.setsampwidth(audio.get_sample_size(form_1))
-        wavefile.setframerate(samp_rate)
-        wavefile.writeframes(b''.join(frames))
-        wavefile.close()
+            # save the audio frames as .wav file
+            wavefile = wave.open(wav_output_filename,'wb')
+            wavefile.setnchannels(chans)
+            wavefile.setsampwidth(audio.get_sample_size(form_1))
+            wavefile.setframerate(samp_rate)
+            wavefile.writeframes(b''.join(frames))
+            wavefile.close()
 
 def keyboardInput():
+    while True:
         inputVar = input("R for reccord")
         if inputVar == "R":
             streamBool = True
         elif inputVar == "S":
             streamBool = False
 
-while True:
-    threading.Thread(target=keyboardInput).start()
-    threading.Thread(target=reccord).start()
+if __name__ == '__main__':
+    worker_reccord = Process(target=reccord())
+    worker_keyboardInput = Process(target=keyboardInput())
+
+    worker_keyboardInput.start()
+    worker_reccord.start()
+
+    # worker_qui_met_a_jour_les_flux = Process(target=mettre_a_jour_les_flux,
+    #                                          args=(queue_de_flux_a_mettre_a_jour,
+    #                                                queue_de_mises_a_jour_des_flux))
+    #
+    # worker_qui_demande_la_mise_a_jour = Process(target=demander_la_mise_a_jour_des_flux,
+    #                                             args=(queue_de_flux_a_mettre_a_jour,
+    #                                                   flux_rss))
