@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 import threading
-from multiprocessing import Queue
+from multiprocessing import Process, Queue, TimeoutError
 import sys
 import time
 
@@ -76,8 +76,8 @@ class Reccorder():
 if __name__ == "__main__":
     reccorderInstance = Reccorder()
 
-    worker2 = multiprocessing.Process(target=reccorderInstance.keyboardInput, args=())
-    worker1 = multiprocessing.Process(target=reccorderInstance.reccord, args=())
+    worker2 = Process(target=reccorderInstance.keyboardInput, args=())
+    worker1 = Process(target=reccorderInstance.reccord, args=())
 
     worker2.start()
     worker1.start()
