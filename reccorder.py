@@ -58,6 +58,7 @@ class Reccorder():
 
     def keyboardInput(self):
         something = True
+        inputVar = "a"
         while inputVar != "R" or inputVar != "S":
             time.sleep(3)
             try:
