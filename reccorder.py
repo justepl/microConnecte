@@ -70,7 +70,7 @@ class Reccorder():
             # try:
             print("try")
             print("R for reccord S for Stop \n")
-            inputVar = str(input())
+            inputVar = eval(input())
             # inputVar.rstrip()
 
             continuOrNot.put(inputVar)
