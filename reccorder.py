@@ -1,9 +1,10 @@
 import pyaudio
 import wave
 import threading
-import multiprocessing
+from multiprocessing import Queue
 import sys
 import time
+
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
@@ -22,7 +23,7 @@ stream = audio.open(format=form_1, rate=samp_rate, channels=chans,
                     input_device_index=dev_index, input=True,
                     frames_per_buffer=chunk)
 
-continuOrNot = multiprocessing.Queue()
+continuOrNot = Queue()
 
 frames = []
 
@@ -62,6 +63,7 @@ class Reccorder():
             try:
                 inputVar = input("R for reccord S for Stop")
                 inputVar.rstrip()
+
                 continuOrNot.put(inputVar)
                 inputVar = "a"
             except EOFError:
@@ -74,11 +76,11 @@ class Reccorder():
 if __name__ == "__main__":
     reccorderInstance = Reccorder()
 
-    worker1 = multiprocessing.Process(target=reccorderInstance.reccord, args=())
     worker2 = multiprocessing.Process(target=reccorderInstance.keyboardInput, args=())
+    worker1 = multiprocessing.Process(target=reccorderInstance.reccord, args=())
 
-    worker1.start()
     worker2.start()
+    worker1.start()
 
     # if __name__ == '__main__':
 
