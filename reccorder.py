@@ -26,6 +26,7 @@ continuOrNot = Queue()
 
 frames = []
 
+inputVar="a"
 
 class Reccorder():
 
@@ -33,14 +34,14 @@ class Reccorder():
         # if streamBool:
         print("func Reccord")
         # while True:
-        streamChar = continuOrNot.get()
-        if streamChar == "R":
+        # inputVar = continuOrNot.get()
+        if inputVar == "R":
             # loop through stream and append audio chunks to frame array
             print("reccord")
             data = stream.read(chunk)
             frames.append(data)
 
-        elif streamChar == "S":
+        elif inputVar == "S":
             print("finished recording")
 
             # stop the stream, close it, and terminate the pyaudio instantiation
@@ -59,7 +60,8 @@ class Reccorder():
 
     def keyboardInput(self):
         something = True
-        inputVar = "a"
+        # inputVar = "a"
+        print("inputVar :", inputVar)
         while inputVar != "R" or inputVar != "S":
             time.sleep(3)
             try:
