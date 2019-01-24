@@ -24,36 +24,37 @@ continuOrNot = multiprocessing.Queue()
 
 frames = []
 
+
 def reccord():
     # if streamBool:
 
-    while True:
-        if streamChar == "R":
-            # loop through stream and append audio chunks to frame array
-            data = stream.read(chunk)
-            frames.append(data)
+    # while True:
+    if streamChar == "R":
+        # loop through stream and append audio chunks to frame array
+        data = stream.read(chunk)
+        frames.append(data)
 
-        elif streamChar == "S":
-            print("finished recording")
+    elif streamChar == "S":
+        print("finished recording")
 
-            # stop the stream, close it, and terminate the pyaudio instantiation
-            stream.stop_stream()
-            stream.close()
-            audio.terminate()
+        # stop the stream, close it, and terminate the pyaudio instantiation
+        stream.stop_stream()
+        stream.close()
+        audio.terminate()
 
-            # save the audio frames as .wav file
-            wavefile = wave.open(wav_output_filename, 'wb')
-            wavefile.setnchannels(chans)
-            wavefile.setsampwidth(audio.get_sample_size(form_1))
-            wavefile.setframerate(samp_rate)
-            wavefile.writeframes(b''.join(frames))
-            wavefile.close()
+        # save the audio frames as .wav file
+        wavefile = wave.open(wav_output_filename, 'wb')
+        wavefile.setnchannels(chans)
+        wavefile.setsampwidth(audio.get_sample_size(form_1))
+        wavefile.setframerate(samp_rate)
+        wavefile.writeframes(b''.join(frames))
+        wavefile.close()
 
 
 def keyboardInput():
-    while True:
-        inputVar = input("R for reccord S for Stop")
-        continuOrNot.put(inputVar)
+    # while True:
+    inputVar = input("R for reccord S for Stop")
+    continuOrNot.put(inputVar)
 
 
 processes = [multiprocessing.Process(target=keyboardInput, args=()),
@@ -62,9 +63,7 @@ processes = [multiprocessing.Process(target=keyboardInput, args=()),
 for p in processes:
     p.start()
 
-
     # if __name__ == '__main__':
-
 
     # worker_qui_met_a_jour_les_flux = Process(target=mettre_a_jour_les_flux,
     #                                          args=(queue_de_flux_a_mettre_a_jour,
