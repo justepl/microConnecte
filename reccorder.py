@@ -57,13 +57,13 @@ class Reccorder():
     def keyboardInput(self):
         something = True
         while (something):
-            time.sleep(1)
-            try:
-                inputVar = input("R for reccord S for Stop") or "a"
-                inputVar.rstrip()
-                continuOrNot.put(inputVar)
-            except EOFError:
-                something = True
+            time.sleep(input("R for reccord S for Stop"))
+            # try:
+            #     inputVar = input("R for reccord S for Stop") or "a"
+            #     inputVar.rstrip()
+            #     continuOrNot.put(inputVar)
+            # except EOFError:
+            #     something = True
 
     # except:
     #     inputVar = "a"
