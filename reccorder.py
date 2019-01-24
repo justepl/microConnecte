@@ -26,7 +26,7 @@ continuOrNot = Queue()
 
 frames = []
 
-global inputVar
+
 inputVar = "a"
 
 class Reccorder():
@@ -36,6 +36,7 @@ class Reccorder():
         print("func Reccord")
         # while True:
         # inputVar = continuOrNot.get()
+        global inputVar
         if inputVar == "R":
             # loop through stream and append audio chunks to frame array
             print("reccord")
@@ -60,6 +61,7 @@ class Reccorder():
 
 
     def keyboardInput(self):
+        global inputVar
         something = True
         # inputVar = "a"
         print("inputVar :", inputVar)
