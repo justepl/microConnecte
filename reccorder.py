@@ -56,16 +56,16 @@ class Reccorder():
 
     def keyboardInput(self):
         something = True
-        while (something):
-            try:
-                inputVar = time.sleep(input("R for reccord S for Stop"))
-                inputVar.rstrip()
-                continuOrNot.put(inputVar)
-            except EOFError:
-                something = True
+        # while (something):
+        try:
+            inputVar = time.sleep(input("R for reccord S for Stop"))
+            inputVar.rstrip()
+            continuOrNot.put(inputVar)
+        except EOFError:
+            something = True
 
-    # except:
-    #     inputVar = "a"
+# except:
+#     inputVar = "a"
 
 
 if __name__ == "__main__":
@@ -74,8 +74,9 @@ if __name__ == "__main__":
     worker1 = multiprocessing.Process(target=reccorderInstance.reccord, args=())
     worker2 = multiprocessing.Process(target=reccorderInstance.keyboardInput, args=())
 
-    worker1.start()
-    worker2.start()
+    while true:
+        worker1.start()
+        worker2.start()
 
     # if __name__ == '__main__':
 
