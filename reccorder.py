@@ -63,7 +63,7 @@ class Reccorder():
         global inputVar
         # inputVar = "a"
         print("inputVar :", inputVar)
-        while inputVar != "R" or inputVar != "S":
+        # while inputVar != "R" or inputVar != "S":
             print("inputVar :", inputVar)
 
             time.sleep(3)
@@ -71,8 +71,8 @@ class Reccorder():
             print("try")
             print("R for reccord S for Stop \n")
             inputVar = str(input("? "))
-            while inputVar != "R" or inputVar != "S":
-                inputVar = eval(input())
+            # while inputVar != "R" or inputVar != "S":
+            #     inputVar = eval(input())
 
             # inputVar.rstrip()
 
