@@ -31,41 +31,41 @@ class Reccorder():
     def reccord(self):
         # if streamBool:
         print("func Reccord")
-        # while True:
-        if streamChar == "R":
-            # loop through stream and append audio chunks to frame array
-            print("reccord")
-            data = stream.read(chunk)
-            frames.append(data)
+        while True:
+            if streamChar == "R":
+                # loop through stream and append audio chunks to frame array
+                print("reccord")
+                data = stream.read(chunk)
+                frames.append(data)
 
-        elif streamChar == "S":
-            print("finished recording")
+            elif streamChar == "S":
+                print("finished recording")
 
-            # stop the stream, close it, and terminate the pyaudio instantiation
-            stream.stop_stream()
-            stream.close()
-            audio.terminate()
+                # stop the stream, close it, and terminate the pyaudio instantiation
+                stream.stop_stream()
+                stream.close()
+                audio.terminate()
 
-            # save the audio frames as .wav file
-            wavefile = wave.open(wav_output_filename, 'wb')
-            wavefile.setnchannels(chans)
-            wavefile.setsampwidth(audio.get_sample_size(form_1))
-            wavefile.setframerate(samp_rate)
-            wavefile.writeframes(b''.join(frames))
-            wavefile.close()
+                # save the audio frames as .wav file
+                wavefile = wave.open(wav_output_filename, 'wb')
+                wavefile.setnchannels(chans)
+                wavefile.setsampwidth(audio.get_sample_size(form_1))
+                wavefile.setframerate(samp_rate)
+                wavefile.writeframes(b''.join(frames))
+                wavefile.close()
 
     def keyboardInput(self):
         something = True
-        # while (something):
-        try:
-            inputVar = time.sleep(input("R for reccord S for Stop"))
-            inputVar.rstrip()
-            continuOrNot.put(inputVar)
-        except EOFError:
-            something = True
+        while (something):
+            try:
+                inputVar = time.sleep(input("R for reccord S for Stop"))
+                inputVar.rstrip()
+                continuOrNot.put(inputVar)
+            except EOFError:
+                something = True
 
-# except:
-#     inputVar = "a"
+    # except:
+    #     inputVar = "a"
 
 
 if __name__ == "__main__":
@@ -74,9 +74,8 @@ if __name__ == "__main__":
     worker1 = multiprocessing.Process(target=reccorderInstance.reccord, args=())
     worker2 = multiprocessing.Process(target=reccorderInstance.keyboardInput, args=())
 
-    while true:
-        worker1.start()
-        worker2.start()
+    worker1.start()
+    worker2.start()
 
     # if __name__ == '__main__':
 
