@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 import threading
-from multiprocessing import Process, Queue, TimeoutError
+import multiprocessing
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
@@ -19,6 +19,8 @@ streamChar = "a"
 stream = audio.open(format=form_1, rate=samp_rate, channels=chans,
                     input_device_index=dev_index, input=True,
                     frames_per_buffer=chunk)
+
+continuOrNot = multiprocessing.Queue()
 
 frames = []
 
@@ -51,17 +53,15 @@ def reccord():
 def keyboardInput():
     while True:
         inputVar = input("R for reccord S for Stop")
-        if inputVar == "R":
-            streamChar = True
-        elif inputVar == "S":
-            streamChar = False
+        continuOrNot.put(inputVar)
 
 
-worker_reccord = Process(target=reccord, args=())
-print("\n here \n")
-worker_keyboardInput = Process(target=keyboardInput, args=())
-worker_keyboardInput.start()
-worker_reccord.start()
+processes = [multiprocessing.Process(target=keyboardInput, args=()),
+             multiprocessing.Process(target=reccord, args=())]
+
+for p in processes:
+    p.start()
+
 
     # if __name__ == '__main__':
 
