@@ -26,8 +26,8 @@ continuOrNot = Queue()
 
 frames = []
 
-
 inputVar = "a"
+
 
 class Reccorder():
 
@@ -59,7 +59,6 @@ class Reccorder():
             wavefile.writeframes(b''.join(frames))
             wavefile.close()
 
-
     def keyboardInput(self):
         global inputVar
         something = True
@@ -77,6 +76,7 @@ class Reccorder():
             except EOFError:
                 something = True
 
+
 # except:
 #     inputVar = "a"
 
@@ -87,15 +87,10 @@ if __name__ == "__main__":
     worker1 = Process(target=reccorderInstance.reccord, args=())
     worker2 = Process(target=reccorderInstance.keyboardInput, args=())
 
-    worker2.start()
-    worker1.start()
+    while i <= 2:
+        worker2.start()
+        worker1.start()
 
-    # if __name__ == '__main__':
-
-    # worker_qui_met_a_jour_les_flux = Process(target=mettre_a_jour_les_flux,
-    #                                          args=(queue_de_flux_a_mettre_a_jour,
-    #                                                queue_de_mises_a_jour_des_flux))
-    #
-    # worker_qui_demande_la_mise_a_jour = Process(target=demander_la_mise_a_jour_des_flux,
-    #                                             args=(queue_de_flux_a_mettre_a_jour,
-    #                                                   flux_rss))
+        worker1.join()
+        worker2.join()
+        i= i + 1
