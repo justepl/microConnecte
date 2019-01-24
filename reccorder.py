@@ -78,6 +78,12 @@ class Reccorder():
                 inputVar = "a"
             except EOFError:
                 print("catch")
+                inputVar = input("R for reccord S for Stop \n")
+                # inputVar.rstrip()
+
+                continuOrNot.put(inputVar)
+                print("queu : ", continuOrNot)
+                inputVar = "a"
 
                 something = True
 
