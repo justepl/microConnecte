@@ -22,6 +22,11 @@ stream = audio.open(format=form_1, rate=samp_rate, channels=chans,
 
 frames = []
 
+worker_reccord = Process(target=reccord())
+worker_keyboardInput = Process(target=keyboardInput())
+worker_keyboardInput.start()
+worker_reccord.start()
+
 
 def reccord():
     # if streamBool:
@@ -58,10 +63,7 @@ def keyboardInput():
             streamChar = False
 
     # if __name__ == '__main__':
-worker_reccord = Process(target=reccord())
-worker_keyboardInput = Process(target=keyboardInput())
-worker_keyboardInput.start()
-worker_reccord.start()
+
 
     # worker_qui_met_a_jour_les_flux = Process(target=mettre_a_jour_les_flux,
     #                                          args=(queue_de_flux_a_mettre_a_jour,
