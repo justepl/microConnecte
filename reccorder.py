@@ -26,7 +26,7 @@ continuOrNot = Queue()
 
 frames = []
 
-inputVar="a"
+global inputVar
 
 class Reccorder():
 
