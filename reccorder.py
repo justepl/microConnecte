@@ -25,7 +25,7 @@ class Reccorder(Thread):
     def __init__(self):
         Thread.__init__(self)
 
-    def reccord(self):
+    def run(self):
         if state == "R":
             frames = []
             print("recording")
@@ -56,8 +56,9 @@ class Listener(Thread):
     def __init__(self):
         Thread.__init__(self)
 
-    def listen(self):
+    def run(self):
         state = input("R reccord, S stop")
+        print(state)
 
 
 thread_Listen = Listener()
