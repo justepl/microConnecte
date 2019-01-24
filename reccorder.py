@@ -16,7 +16,7 @@ audio = pyaudio.PyAudio()  # audio obj from PyAudio class
 stream = audio.open(format=form_1, rate=samp_rate, channels=chans, input_device_index=dev_index, input=True,
                     frames_per_buffer=chunk)
 
-state = ""
+state = "R"
 
 
 class Reccorder(Thread):
