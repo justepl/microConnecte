@@ -13,7 +13,7 @@ wav_output_filename = 'test1.wav' # name of .wav file
 
 audio = pyaudio.PyAudio() # create pyaudio instantiation
 
-streamBool = False
+streamChar = "a"
 
 
 # create pyaudio stream
@@ -26,12 +26,12 @@ def reccord():
     # if streamBool:
 
     while True:
-        if streamBool:
+        if streamChar == "R":
             # loop through stream and append audio chunks to frame array
             data = stream.read(chunk)
             frames.append(data)
 
-        else:
+        elif streamChar == "S":
             print("finished recording")
 
             # stop the stream, close it, and terminate the pyaudio instantiation
@@ -49,11 +49,11 @@ def reccord():
 
 def keyboardInput():
     while True:
-        inputVar = input("R for reccord")
+        inputVar = input("R for reccord S for Stop")
         if inputVar == "R":
-            streamBool = True
+            streamChar = True
         elif inputVar == "S":
-            streamBool = False
+            streamChar = False
 
 if __name__ == '__main__':
     worker_reccord = Process(target=reccord())
