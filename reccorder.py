@@ -53,9 +53,9 @@ def reccord():
 
 
 def keyboardInput():
-    # while True:
-    something = True
-    while(something):
+    while True:
+        something = True
+    while (something):
         try:
             inputVar = input("R for reccord S for Stop") or "a"
             inputVar.rstrip()
@@ -63,11 +63,11 @@ def keyboardInput():
         except EOFError:
             something = False
 
-
     # except:
     #     inputVar = "a"
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     processes = [multiprocessing.Process(target=reccord),
                  multiprocessing.Process(target=keyboardInput)]
 
