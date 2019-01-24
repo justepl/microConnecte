@@ -62,6 +62,7 @@ class Reccorder():
                 inputVar = input("R for reccord S for Stop")
                 inputVar.rstrip()
                 continuOrNot.put(inputVar)
+                inputVar = "a"
             except EOFError:
                 something = True
 
