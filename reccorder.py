@@ -22,12 +22,6 @@ stream = audio.open(format=form_1, rate=samp_rate, channels=chans,
 
 frames = []
 
-worker_reccord = Process(target=reccord())
-worker_keyboardInput = Process(target=keyboardInput())
-worker_keyboardInput.start()
-worker_reccord.start()
-
-
 def reccord():
     # if streamBool:
 
@@ -61,6 +55,13 @@ def keyboardInput():
             streamChar = True
         elif inputVar == "S":
             streamChar = False
+
+
+print("\n here \n")
+worker_reccord = Process(target=reccord())
+worker_keyboardInput = Process(target=keyboardInput())
+worker_keyboardInput.start()
+worker_reccord.start()
 
     # if __name__ == '__main__':
 
