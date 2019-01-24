@@ -63,7 +63,7 @@ class Reccorder():
                 inputVar.rstrip()
                 continuOrNot.put(inputVar)
             except EOFError:
-                something = False
+                something = True
 
     # except:
     #     inputVar = "a"
