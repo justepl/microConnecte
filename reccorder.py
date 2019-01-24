@@ -23,7 +23,7 @@ stream = audio.open(format = form_1,rate = samp_rate,channels = chans,
 
 def reccord():
     # if streamBool:
-        frames = []
+    #     frames = []
 
     while True:
         if streamBool:
