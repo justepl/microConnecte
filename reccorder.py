@@ -3,6 +3,7 @@ import wave
 import threading
 import multiprocessing
 import sys
+import time
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
@@ -56,6 +57,8 @@ def keyboardInput():
     while True:
         something = True
     while (something):
+        time.sleep(1)
+        print("here")
         try:
             inputVar = input("R for reccord S for Stop") or "a"
             inputVar.rstrip()
