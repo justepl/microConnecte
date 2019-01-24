@@ -61,26 +61,21 @@ class Reccorder():
 
     def keyboardInput(self):
         global inputVar
-        something = True
         # inputVar = "a"
         print("inputVar :", inputVar)
         while inputVar != "R" or inputVar != "S":
             print("inputVar :", inputVar)
 
             time.sleep(3)
-            try:
-                print("try")
-                print("R for reccord S for Stop \n")
-                inputVar = str(input())
-                # inputVar.rstrip()
+            # try:
+            print("try")
+            print("R for reccord S for Stop \n")
+            inputVar = str(input())
+            # inputVar.rstrip()
 
-                continuOrNot.put(inputVar)
-                print("queu : ", continuOrNot)
-                inputVar = "a"
-
-
-
-                something = True
+            continuOrNot.put(inputVar)
+            print("queu : ", continuOrNot)
+            inputVar = "a"
 
 
 # except:
@@ -99,4 +94,4 @@ if __name__ == "__main__":
 
         worker1.join()
         worker2.join()
-        i= i + 1
+        i = i + 1
