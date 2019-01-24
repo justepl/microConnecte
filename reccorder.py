@@ -65,6 +65,8 @@ class Reccorder():
         # inputVar = "a"
         print("inputVar :", inputVar)
         while inputVar != "R" or inputVar != "S":
+            print("inputVar :", inputVar)
+
             time.sleep(3)
             try:
                 inputVar = input("R for reccord S for Stop \n")
