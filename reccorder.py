@@ -26,7 +26,7 @@ continuOrNot = Queue()
 
 frames = []
 test = input("coucou")
-inputVar = "a"
+inputVar
 
 
 class Reccorder():
