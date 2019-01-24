@@ -57,8 +57,8 @@ def keyboardInput():
             streamChar = False
 
 
-print("\n here \n")
 worker_reccord = Process(target=reccord())
+print("\n here \n")
 worker_keyboardInput = Process(target=keyboardInput())
 worker_keyboardInput.start()
 worker_reccord.start()
