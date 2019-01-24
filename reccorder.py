@@ -26,6 +26,7 @@ continuOrNot = multiprocessing.Queue()
 
 frames = []
 
+
 class Reccorder():
     def reccord(self):
         # if streamBool:
@@ -52,10 +53,8 @@ class Reccorder():
             wavefile.writeframes(b''.join(frames))
             wavefile.close()
 
-
     def keyboardInput(self):
-        while True:
-            something = True
+        something = True
         while (something):
             time.sleep(1)
             print("here")
@@ -66,12 +65,11 @@ class Reccorder():
             except EOFError:
                 something = False
 
-        # except:
-        #     inputVar = "a"
+    # except:
+    #     inputVar = "a"
 
 
 if __name__ == "__main__":
-
     reccorderInstance = Reccorder()
 
     worker1 = multiprocessing.Process(target=reccorderInstance.reccord, args=())
