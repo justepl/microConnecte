@@ -28,6 +28,7 @@ frames = []
 
 
 class Reccorder():
+
     def reccord(self):
         # if streamBool:
         print("func Reccord")
@@ -56,20 +57,20 @@ class Reccorder():
             wavefile.close()
 
 
-def keyboardInput(self):
-    something = True
-    inputVar = "a"
-    while inputVar != "R" or inputVar != "S":
-        time.sleep(3)
-        try:
-            inputVar = input("R for reccord S for Stop \n")
-            # inputVar.rstrip()
+    def keyboardInput(self):
+        something = True
+        inputVar = "a"
+        while inputVar != "R" or inputVar != "S":
+            time.sleep(3)
+            try:
+                inputVar = input("R for reccord S for Stop \n")
+                # inputVar.rstrip()
 
-            continuOrNot.put(inputVar)
-            print("queu : ", continuOrNot)
-            inputVar = "a"
-        except EOFError:
-            something = True
+                continuOrNot.put(inputVar)
+                print("queu : ", continuOrNot)
+                inputVar = "a"
+            except EOFError:
+                something = True
 
 # except:
 #     inputVar = "a"
