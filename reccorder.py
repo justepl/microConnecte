@@ -71,8 +71,8 @@ class Reccorder():
 
 
 if __name__ == "__main__":
-    worker1 = multiprocessing.Process(target=reccord, args=("rec"))
-    worker2 = multiprocessing.Process(target=keyboardInput, args=("keyboard"))
+    worker1 = multiprocessing.Process(target=Reccorder.reccord, args=())
+    worker2 = multiprocessing.Process(target=Reccorder.keyboardInput, args=())
 
     worker1.start()
     worker2.start()
