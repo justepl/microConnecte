@@ -58,12 +58,12 @@ class Reccorder():
 
     def keyboardInput(self):
         something = True
-        while (something):
+        while inputVar != "R" or inputVar != "S":
             time.sleep(3)
             try:
                 inputVar = input("R for reccord S for Stop \n")
                 # inputVar.rstrip()
-                
+
                 continuOrNot.put(inputVar)
                 print("queu : ",continuOrNot)
                 inputVar = "a"
