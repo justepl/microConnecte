@@ -54,6 +54,8 @@ def reccord():
 def keyboardInput():
     # while True:
     inputVar = input("R for reccord S for Stop")
+    if not inputVar:
+        inputVar = "a"
     continuOrNot.put(inputVar)
 
 if __name__=="__main__":
